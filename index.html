@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ㅋㅋㅇㅌ</title>	
+	<link rel="stylesheet" type="text/css" href="/src/style.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js" integrity="sha384-qlmct0AOBiA2VPZkMY3+2WqkHtIQ9lSdAsAn5RUJD/3vA5MKDgSGcdmIv4ycVxyn" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/ko.min.js" integrity="sha512-3kMAxw/DoCOkS6yQGfQsRY1FWknTEzdiz8DOwWoqf+eGRN45AmjS2Lggql50nCe9Q6m5su5dDZylflBY2YjABQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<script defer src="/src/script.js"></script>
+</head>
+<body>
+	<div id="container">
+		<div class="modal fade" id="modal-userlist" tabindex="-1" aria-hidden="true">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="close">
+							<span aria-hidden="true">x</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div id="userlist">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="chat-info">
+			<div id="chat-profile">				
+				<div class="profile-img">
+					<a data-toggle="modal" href="#modal-userlist">
+						<img src="https://post-phinf.pstatic.net/MjAxNzA2MjlfMjU5/MDAxNDk4NzM5NzI3MjA0.Aon2aPyhufiwt9-Y21w0v1luZzlYnihR7Xcozypyf8Qg.QLFNlJRzJzd1TqWWSN0DyVeHxe8zsAxGc7PHwkNHy8gg.PNG/1483309553699.png?type=w1200">
+					</a>
+				</div>
+			</div>
+			<div id="chat-name">
+				<strong>오픈채팅</strong> (<span id="usernum"></span>)
+			</div>
+		</div>
+		<div id="message-container">
+		<!--
+			<div class="day">2021년 6월 30일 수요일</div>
+			<div class="announcement">
+				<strong>ㅇㅇ</strong>님이 들어오셨습니다.
+			</div>
+			<div class="myChat">
+				<div class="chat-box">
+					<div class="time">오후 6:30</div>
+					<div class="speech-bubble">
+						<div class="bubble-box">
+							ㅎ<br>ㅇ<br>ㅎ<br>ㅇ<br>ㅎ<br>ㅇ
+						</div>
+						<br>
+						<div class="bubble-box">
+							ㅂㅇㅂㅇ
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="otherChat">
+				<div class="profile-img"> 
+					<img src="https://post-phinf.pstatic.net/MjAxNzA2MjlfMjU5/MDAxNDk4NzM5NzI3MjA0.Aon2aPyhufiwt9-Y21w0v1luZzlYnihR7Xcozypyf8Qg.QLFNlJRzJzd1TqWWSN0DyVeHxe8zsAxGc7PHwkNHy8gg.PNG/1483309553699.png?type=w1200">
+				</div>
+				<div class="chat-box">
+					<div class="name">ㅇㅇ</div>
+					<div>
+						<div class="speech-bubble">
+							<div class="bubble-box">
+								ㅎㅇ
+							</div>
+							<br>
+							<div class="bubble-box">
+								ㅎㅇㅎㅇ
+							</div>
+							<br>
+						</div>
+						<div class="time">오후 6:30</div>
+					</div>
+					<div>
+						<div class="speech-bubble">
+							<div class="bubble-box">
+								ㅎㅇ
+							</div>
+							<br>
+						</div>
+						<div class="time">오후 6:31</div>
+					</div>
+				</div>
+			</div>			
+			<div class="announcement">
+				<strong>ㅇㅇ</strong>님이 나가셨습니다.
+			</div>
+			<div class="otherChat">
+				<div class="profile-img"> 
+					<img src="https://post-phinf.pstatic.net/MjAxNzA2MjlfMjU5/MDAxNDk4NzM5NzI3MjA0.Aon2aPyhufiwt9-Y21w0v1luZzlYnihR7Xcozypyf8Qg.QLFNlJRzJzd1TqWWSN0DyVeHxe8zsAxGc7PHwkNHy8gg.PNG/1483309553699.png?type=w1200">
+				</div>
+				<div class="chat-box">
+					<div class="name">ㄴㄴ</div>
+					<div class="speech-bubble">
+						<div class="bubble-box">
+							ㅎㅇㅎㅇㅎㅇㅎㅇㅎㅇㅎㅇㅎㅇㅎㅇㅎㅇㅎㅇㅎㅇㅎㅇ
+						</div>
+						<br>
+					</div>
+					<div class="time">오후 6:31</div>
+				</div>
+			</div>
+		-->
+		</div>
+		<div id="send-container">
+			<form id="messageForm">
+				<input type="textarea" id="input-box" class="form-control" required>
+				<button type="submit" class="btn btn-warning">전송</button>
+			</form>
+			<form id="fileForm">
+				<label for="input-file" onclick="upload_file();">
+					<img src="https://cdn.iconscout.com/icon/free/png-512/paper-clip-460494.png" title="파일전송">
+				</label>
+				<input type="file" id="input-file" style="opacity:0">
+			</form>
+		</div>
+	</div>
+</body>
+</html>
