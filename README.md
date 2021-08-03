@@ -1,4 +1,8 @@
 # 🗨 KKOTalk
+<div align="center">
+ <img src="https://user-images.githubusercontent.com/79207412/128053308-1a4b9b9e-7e47-4489-b554-61380d3a6f81.gif">
+</div>
+
 <br/>
 
 ## 📄 Description
@@ -20,3 +24,7 @@
 - Socket.io
 - AWS EC2
 <br/>
+
+## 📈 Server Stress Test
+
+![Stress Test](https://user-images.githubusercontent.com/79207412/128053191-f09ae7f6-6383-4e38-844a-b1d5cee025ed.png)
